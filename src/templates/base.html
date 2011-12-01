@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    
+    <title>{% block title %}Elephant Talk{% endblock %}</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+    
+    {% block extra_css %}{% endblock %}
+    {% block extra_meta %}{% endblock %}
+</head>
+
+<body>
+    <div data-role="page" id="container">
+        <div data-role="header" id="header">
+            <div id="menu">
+                <h3>{% block header %}Elephant Talk{% endblock %}</h3>
+                <p>
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                        <a href="/admin/">Admin</a> |
+                        {% endif %}
+                    <a href="/hud/">HUD</a> |
+                    <a href="/change_password/">Change Password</a> |
+                    <a href="/logout/">Logout</a>
+                    {% else %}
+                    <a href="/login/">Login</a>
+                    {% endif %}
+                </p>
+            </div> <!-- menu -->
+            
+        {% block extra_header %}{% endblock %}
+        <hr/>
+        </div> <!-- header -->
+        
+        <div style="clear:both;"></div>
+        
+        <div data-role="content" id="content">
+            {% block content %}{% endblock %}
+        </div> <!-- content -->
+        
+        <div id="footer">
+            <p>Copyright &copy; 2011 Group 6 LLC</p>
+            {% block extra_footer %}{% endblock %}
+        </div> <!-- footer -->
+    </div><!-- container -->
+</body>
+</html>
