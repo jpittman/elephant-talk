@@ -126,6 +126,13 @@ INSTALLED_APPS = (
     
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    
+    # handling migrations.
+    'south',
+    
+    # blog posts
+    'posts',
+    
 )
 
 #AUTH_PROFILE_MODULE = 'accounts.UserProfile'
