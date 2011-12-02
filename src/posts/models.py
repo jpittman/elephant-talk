@@ -2,7 +2,6 @@ from django.db import models
 from datetime import datetime
 
 class Post(models.Model):
-    prepopulated_fields = {"slug": ("title",)}
 
     title_help = "The title of the post."
     title = models.CharField(max_length=256, help_text=title_help)
