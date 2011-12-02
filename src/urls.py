@@ -8,8 +8,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'elephant_talk.views.home', name='home'),
+
+    url(r'^(?P<slug>[-\w]+)/$', 'posts.views.get_post'),
+    url(r'^$', 'posts.views.index'),
     # url(r'^elephant_talk/', include('elephant_talk.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
