@@ -85,6 +85,9 @@ def clean_db():
         # run syncdb with no input
         local(dev_django % 'syncdb --noinput')
         
+        # run migrations
+        local(dev_django % 'migrate')
+                
         # create the admin user with no password
         local(dev_django % create_admin_cmd)
     
