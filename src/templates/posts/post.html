@@ -2,12 +2,12 @@
 {% extends "base.html" %}
 
 
-{% block header %}Posts{% endblock %}
+{% block header %}{{ post.title }}{% endblock %}
 
 {% block content %}
 
 <ul data-role="listview" data-inset="true" data-filter="true">
-    <li><a href="#">{{ post.title }}</a></li>
+    <li>Posted: {{ post.last_updated|date }}</li>
     <li>{{ post.body }}</li>
 </ul>
 
