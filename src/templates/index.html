@@ -1,0 +1,15 @@
+
+{% extends "base.html" %}
+
+
+{% block header %}Posts{% endblock %}
+
+{% block content %}
+
+<ul data-role="listview" data-inset="true" data-filter="true">
+{% for post in posts %}
+    <li><a href="{{ post.slug }}/">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
