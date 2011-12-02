@@ -23,7 +23,6 @@ def index(request):
         
 def get_post(request, slug):
     post = Post.objects.get(slug=slug)
-    st()
     template = 'posts/post.html'
     return render_to_response(
         template,
