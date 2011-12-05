@@ -18,18 +18,20 @@
         <div data-role="header" id="header">
             <div id="menu">
                 <h3>{% block header %}Elephant Talk{% endblock %}</h3>
-                <p>
+                <div data-role="controlgroup" data-type="horizontal">
                     {% if user.is_authenticated %}
                         {% if user.is_superuser %}
-                        <a href="/admin/">Admin</a> |
+                        <a href="/admin/" data-role="button">Admin</a>
                         {% endif %}
-                    <a href="/hud/">HUD</a> |
-                    <a href="/change_password/">Change Password</a> |
-                    <a href="/logout/">Logout</a>
+                        {% if user.is_staff %}
+                        <a href="/addpost/" data-role="button">Add a Post</a>
+                        {% endif %}
+                    <a href="/change_password/" data-role="button">Change Password</a>
+                    <a href="/logout/" data-role="button">Logout</a>
                     {% else %}
-                    <a href="/login/">Login</a>
+                    <a href="/login/" data-role="button">Login</a>
                     {% endif %}
-                </p>
+                </div> <!-- controlgroup -->
             </div> <!-- menu -->
             
         {% block extra_header %}{% endblock %}
