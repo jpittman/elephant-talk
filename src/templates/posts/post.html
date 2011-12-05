@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<div class="ui-grid-a">
+    <div class="ui-block-a">
+        <ul data-role="listview" data-inset="true">
+            <li>{{ post.title }}</li>
+            <li>Posted: {{ post.last_updated|date }}</li>
+        </ul>
+    </div><!-- ui-block-a -->
+    <div class="ui-block-b">
+        <ul data-role="listview" data-inset="true">
+            <li>{{ post.body }}</li>
+        </ul>
+    </div><!-- ui-block-b -->
+{% endblock %}
