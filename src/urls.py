@@ -9,8 +9,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    url(r'^(?P<slug>[-\w]+)/$', 'posts.views.get_post'),
-    url(r'^$', 'posts.views.index'),
+
     # url(r'^elephant_talk/', include('elephant_talk.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
@@ -34,6 +33,9 @@ urlpatterns = patterns('',
     # handling web crawlers.
     (r'^robots\.txt$', 
         lambda r: HttpResponse("User-agent: *\nDisallow: /", mimetype="text/plain")),
+        
+    url(r'^(?P<slug>[-\w]+)/$', 'posts.views.get_post'),
+    url(r'^$', 'posts.views.index'),
 )
 
 if getattr(settings, 'DEBUG', False):
