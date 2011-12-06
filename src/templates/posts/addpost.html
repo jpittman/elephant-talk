@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+
+{% block title %}DMZ - Add Task{% endblock %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div id="add_task">
+<form action="/add_post/" method="post">
+    <input type="hidden" name="next" value="{{ next }}"> 
+    {% csrf_token %}
+    {{ form.title.errors }}
+    <label for="id_title">Title:</label>
+    {{ form.title }}
+    {{ form.body.errors }}
+    <label for="id_description">Body</label>
+    {{ form.body }}
+    <div id="add_button">
+        <input type="submit" value="Add" class="submit-button"/>
+    </div> <!-- add_button -->
+</form>
+</div> <!-- change -->
+</div> <!-- change_box -->
+
+{% endif %}
+
+{% endblock %}

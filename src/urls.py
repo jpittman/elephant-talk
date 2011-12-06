@@ -37,6 +37,7 @@ urlpatterns = patterns('',
     # comments
     (r'^comments/', include('django.contrib.comments.urls')),
 
+    url(r'^add_post/$', 'posts.views.add_post'),
     url(r'^(?P<slug>[-\w]+)/$', 'posts.views.get_post'),
     url(r'^$', 'posts.views.index'),
 )
