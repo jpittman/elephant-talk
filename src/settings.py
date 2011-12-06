@@ -129,8 +129,11 @@ INSTALLED_APPS = (
     
     # handling migrations.
     'south',
-    
-    # blog posts
+
+    # for threaded comments
+    'django.contrib.comments',
+
+    # our blog posts app
     'posts',
     
 )
@@ -138,6 +141,7 @@ INSTALLED_APPS = (
 #AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "/login"
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

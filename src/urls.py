@@ -33,7 +33,10 @@ urlpatterns = patterns('',
     # handling web crawlers.
     (r'^robots\.txt$', 
         lambda r: HttpResponse("User-agent: *\nDisallow: /", mimetype="text/plain")),
-        
+    
+    # comments
+    (r'^comments/', include('django.contrib.comments.urls')),
+
     url(r'^(?P<slug>[-\w]+)/$', 'posts.views.get_post'),
     url(r'^$', 'posts.views.index'),
 )

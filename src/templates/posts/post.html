@@ -1,7 +1,7 @@
 
 {% extends "base.html" %}
 
-
+{% load comments %}
 
 {% block content %}
 <div class="ui-grid-a">
@@ -15,5 +15,19 @@
         <ul data-role="listview" data-inset="true">
             <li>{{ post.body }}</li>
         </ul>
+        <h3>Comments on This Post:</h3>
+        {% get_comment_list for post as comment_list %}
+        {% for comment in comment_list %}
+            <p>Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
+            <p>Comment: {{ comment.comment }}</p>
+        {% endfor %}
+        <p>Reply to Original:</p>
+        {% get_comment_form for post as form %}
+        <form action="{% comment_form_target %}" method="post">
+            {% csrf_token %}
+            {{ form.as_ul }}
+            <input type="submit" name="submit" value="Post">
+            <input type="submit" name="preview" value="Preview">
+        </form>
     </div><!-- ui-block-b -->
 {% endblock %}
