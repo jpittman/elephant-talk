@@ -16,11 +16,15 @@
             <li>{{ post.body }}</li>
         </ul>
         <h3>Comments on This Post:</h3>
+        <ul data-role="listview" data-inset="true">
         {% get_comment_list for post as comment_list %}
         {% for comment in comment_list %}
+            <li>
             <p>Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
             <p>Comment: {{ comment.comment }}</p>
+            </li>
         {% endfor %}
+        </ul>
         <p>Reply to Original:</p>
         {% get_comment_form for post as form %}
         <form action="{% comment_form_target %}" method="post">
