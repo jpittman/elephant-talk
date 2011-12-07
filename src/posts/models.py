@@ -20,3 +20,9 @@ class Post(models.Model):
     
     last_updated_help = "Auto populated field for when the post was last updated."
     last_updated = models.DateTimeField(auto_now=True, help_text=last_updated_help)
+    
+    def get_absolute_url(self):
+        return "/%s/" % self.slug
+        
+    def __unicode__(self):
+        return self.title
