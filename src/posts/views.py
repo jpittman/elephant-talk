@@ -1,6 +1,7 @@
 # Create your views here.
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, get_list_or_404
@@ -10,7 +11,7 @@ from django.template import Context, RequestContext
 from pdb import set_trace as st
 
 from models import *
-from forms import PostForm
+from forms import PostForm, UserForm
 
 def index(request):
     # return all base classes and order them by name.
@@ -54,3 +55,23 @@ def add_post(request):
         'posts/addpost.html', 
         {'form': form},
         context_instance=RequestContext(request))
+    
+def register(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            email = form.cleaned_data['email']
+            user = User.objects.create_user(username, email, password)
+            user.save()
+        else:
+            pass
+    else:
+        form = UserForm()
+    return render_to_response(
+        'registration/register.html', 
+        {'form': form},
+        context_instance=RequestContext(request))
+        
+        

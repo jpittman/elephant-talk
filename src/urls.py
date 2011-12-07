@@ -26,6 +26,7 @@ urlpatterns = patterns('',
         'post_change_redirect':'/password_done/'}),
     (r'^password_done/$', 'django.contrib.auth.views.password_change_done',
         {'template_name': 'registration/password_success.html'}),
+    (r'^register/$', 'posts.views.register'),
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
