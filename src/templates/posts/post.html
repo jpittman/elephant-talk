@@ -15,19 +15,34 @@
 {% get_comment_list for post as comment_list %}
 {% for comment in comment_list %}
     <li>
-    <p>Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
-    <p>Comment: {{ comment.comment }}</p>
+    <p><strong>Posted by</strong>: {{ comment.user_name }} on {{ comment.submit_date }}</p>
+    <p><strong>Comment</strong>: {{ comment.comment }}</p>
     </li>
 {% endfor %}
 </ul>
-<p>Reply to Original:</p>
+<h3>Leave A Comment:</h3>
 {% get_comment_form for post as form %}
 <form action="{% comment_form_target %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ post.get_absolute_url }}" />
-    {{ form.as_ul }}
+    {% csrf_token %}
+    {{ form.name.errors }}
+    <label for="id_name">Name:</label>
+    {{ form.name }}
+    {{ form.email.errors }}
+    <label for="id_email">Email:</label>
+    {{ form.email }}
+    {{ form.url.errors }}
+    <label for="id_url">Website:</label>
+    {{ form.url }}
+    {{ form.comment.errors }}
+    <label for="id_comment">Comment:</label>
+    {{ form.comment }}
+    {{ form.content_type }}
+    {{ form.object_pk }}
+    {{ form.timestamp }}
+    {{ form.security_hash }}
     <input type="submit" name="submit" value="Post">
-    <input type="submit" name="preview" value="Preview">
 </form>
 
 {% endblock %}
