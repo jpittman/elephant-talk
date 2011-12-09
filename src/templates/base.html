@@ -17,8 +17,8 @@
     <div data-role="page" id="container">
         <div data-role="header" id="header">
             <div id="menu">
-                <h3>{% block header %}Elephant Talk{% endblock %}</h3>
-                <div data-role="controlgroup" data-type="horizontal">
+                <h3 style="margin-left:10px;">{% block header %}Elephant Talk{% endblock %}</h3>
+                <div data-role="controlgroup" data-type="horizontal" style="margin-left:10px;">
                     <a href="/" data-role="button">Home</a>
                     {% if user.is_authenticated %}
                         {% if user.is_staff %}
@@ -44,7 +44,7 @@
             {% block content %}{% endblock %}
         </div> <!-- content -->
         
-        <div id="footer">
+        <div id="footer" style="margin-left:10px;">
             <p>Copyright &copy; 2011 Group 6 LLC</p>
             {% block extra_footer %}{% endblock %}
         </div> <!-- footer -->
