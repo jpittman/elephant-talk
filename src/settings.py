@@ -135,10 +135,11 @@ INSTALLED_APPS = (
 
     # our blog posts app
     'posts',
+    'userprofile',
     
 )
 
-#AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+AUTH_PROFILE_MODULE = 'userprofile.UserProfile'
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "/login"
 
