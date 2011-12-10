@@ -2,6 +2,7 @@
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, get_list_or_404
@@ -60,11 +61,11 @@ def register(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            email = form.cleaned_data['email']
-            user = User.objects.create_user(username, email, password)
-            user.save()
+            form.save()
+            user = authenticate(username=form.cleaned_data['username'], 
+                                password=form.cleaned_data['password1'])
+            login(request, user)
+            return redirect("/")
         else:
             pass
     else:
