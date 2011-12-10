@@ -1,6 +1,6 @@
 # Create your views here.
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.core.exceptions import ObjectDoesNotExist
@@ -13,6 +13,16 @@ from pdb import set_trace as st
 
 from models import *
 from forms import PostForm, UserForm
+
+# helper functions
+
+def not_staff_or_superuser(user):
+    if user:
+        if user.is_staff or user.is_superuser:
+            return True
+    return False
+
+# views
 
 def index(request):
     # return all base classes and order them by name.
@@ -31,7 +41,9 @@ def get_post(request, slug):
         template,
         {'post':post},
         context_instance=RequestContext(request))
-        
+
+@login_required
+@user_passes_test(not_staff_or_superuser, login_url='/')
 def add_post(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -43,6 +55,7 @@ def add_post(request):
                 title = form.cleaned_data['title'],
                 body = form.cleaned_data['body'],
                 slug = slug,
+                user = request.user,
             )
             post.save()
             return redirect("/%s" % post.slug)
@@ -56,23 +69,4 @@ def add_post(request):
         'posts/addpost.html', 
         {'form': form},
         context_instance=RequestContext(request))
-    
-def register(request):
-    if request.method == "POST":
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = authenticate(username=form.cleaned_data['username'], 
-                                password=form.cleaned_data['password1'])
-            login(request, user)
-            return redirect("/")
-        else:
-            pass
-    else:
-        form = UserForm()
-    return render_to_response(
-        'registration/register.html', 
-        {'form': form},
-        context_instance=RequestContext(request))
-        
-        
+
