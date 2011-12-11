@@ -7,3 +7,10 @@ To set up the development environment, do the following:
     ./manage.py changepassword admin
 3. With fabfile, run:
     fab testserver
+    
+todo
+====
+
+ - add pagination
+ - associate a user with a comment if the user is logged in.
+ - add support for markdown syntax into blog posts
