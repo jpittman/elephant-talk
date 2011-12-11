@@ -7,7 +7,10 @@
 <h3>{{ post.title }}</h3>
 <ul data-role="listview" data-inset="true">
    
-    <li>Posted: {{ post.last_updated|date }}</li>
+    {% with username=post.user.username %}
+    <li><a href="/profile/{{ username }}/">Posted by {{ username }}</a></li>
+    {% endwith %}
+    <li>Posted on {{ post.last_updated|date }}</li>
     <li>{{ post.body }}</li>
 </ul>
 <h3>Comments on This Post:</h3>
