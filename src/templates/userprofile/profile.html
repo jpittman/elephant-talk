@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h3>{{ profile.user.username }}</h3>
+{% if user.username == profile.user.username %}
+<div data-role="controlgroup" data-type="horizontal" style="margin-left:10px;">
+    <a href="/profile/edit_profile/{{ user.username }}/" data-role="button">Edit Profile</a>
+    <a href="/change_password/" data-role="button">Change Password</a>
+</div>
+{% endif %}
+<ul data-role="listview" data-inset="true">
+    <li>Name: {{ profile.user.first_name }} {{ profile.user.last_name }}</li>
+    <li>Email: {{ profile.user.email }}</li>
+    <li>Joined: {{ profile.user.date_joined }}</li>
+    {% with posts=profile.user.posts.count %}
+    <li>{{ posts }} post{{ posts|pluralize }}</li>
+    {% endwith %}
+</ul>
+
+<ul data-role="listview" data-inset="true">
+    <li>{{ profile.bio }}</li>
+</ul>
+
+{% endblock %}

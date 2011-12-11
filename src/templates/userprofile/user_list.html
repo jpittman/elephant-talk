@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<ul data-role="listview" data-inset="true" data-filter="true">
+{% for entry in users %}
+    <li>
+        <a href="{{ entry.user.username }}/">{{ entry.user.username }}</a>    
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

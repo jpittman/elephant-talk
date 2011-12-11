@@ -10,6 +10,22 @@ from django.shortcuts import render_to_response, redirect
 from django.template import Context, RequestContext
 
 from forms import UserCreationForm
+from models import UserProfile
+
+def get_user_profile(request, username):
+    user = get_object_or_404(User, username=username)
+    return render_to_response(
+        'userprofile/profile.html', 
+        {'profile': user.get_profile()},
+        context_instance=RequestContext(request))
+    
+    
+def list_users(request):
+    users = get_list_or_404(UserProfile)
+    return render_to_response(
+        'userprofile/user_list.html',
+        {'users': users},
+        context_instance=RequestContext(request))
 
 def register(request):
     if request.method == "POST":
