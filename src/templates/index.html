@@ -6,7 +6,10 @@
 
 <ul data-role="listview" data-inset="true" data-filter="true">
 {% for post in posts %}
-    <li><a href="/{{ post.slug }}/">{{ post.title }}</a></li>
+    <li>
+        <a href="/{{ post.slug }}/">{{ post.title }}</a>
+        <p style="margin-left:20px;">Posted by {{ post.user.username }} on {{ post.last_updated|date }}</p>
+    </li>
 {% endfor %}
 </ul>
 
