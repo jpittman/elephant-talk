@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from models import UserProfile
 
 
 class UserCreationForm(UserCreationForm):
@@ -38,3 +39,22 @@ class UserCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class UserProfileForm(forms.Form):
+
+    first_name = forms.RegexField(max_length=30, regex=r'^[\w-]+$',
+        help_text = ("Required. 30 characters or fewer. Letters, digits and '-' only."),
+        error_messages = {'invalid': ("This value may contain only letters, numbers and '-' characters.")})
+
+    last_name = forms.RegexField(max_length=30, regex=r'^[\w-]+$',
+        help_text = ("Required. 30 characters or fewer. Letters, digits and '-' only."),
+        error_messages = {'invalid': ("This value may contain only letters, numbers and '-' characters.")})
+
+    email = forms.EmailField()
+    
+    bio = forms.CharField(widget=forms.Textarea)
+    
+    class Meta:
+        model = UserProfile
+        fields = ("user.username",)
+        

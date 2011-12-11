@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+
+{% block title %}Edit Profile {% endblock %}
+
+{% block content %}
+    <div id="edit_profile">
+        <form action="/profile/edit_profile/" method="post">
+        {% csrf_token %}
+        {{ form.first_name.errors }}
+        <label for="id_first_name">First Name:</label>
+        {{ form.first_name }}
+        {{ form.last_name.errors }}
+        <label for="id_last_name">Last Name:</label>
+        {{ form.last_name }}
+        {{ form.email.errors }}
+        <label for="id_email">Email:</label>
+        {{ form.email }}
+        {{ form.bio.errors }}
+        <label for="id_bio">Bio:</label>
+        {{ form.bio }}
+        <div id="login_button">
+            <input type="submit" value="Submit" class="submit-button"/>
+        </div> <!-- login button -->
+        </form>
+    </div> <!-- login -->
+{% endblock %}
