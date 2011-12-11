@@ -28,6 +28,8 @@ urlpatterns = patterns('',
         {'template_name': 'registration/password_success.html'}),
     (r'^register/$', 'userprofile.views.register'),
 
+    (r'^profile/', include('userprofile.urls')),
+
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
     
