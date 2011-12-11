@@ -5,12 +5,28 @@
 {% block content %}
 
 <ul data-role="listview" data-inset="true" data-filter="true">
-{% for post in posts %}
+{% for post in posts.object_list %}
     <li>
         <a href="/{{ post.slug }}/">{{ post.title }}</a>
         <p style="margin-left:20px;">Posted by {{ post.user.username }} on {{ post.last_updated|date }}</p>
     </li>
 {% endfor %}
 </ul>
+
+<div class="pagination" data-role="controlgroup" data-type="horizontal" style="margin-left:10px;">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}" data-role="button">previous</a>
+        {% endif %}
+
+        <span class="current" style="margin-left:10px;">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}" data-role="button">next</a>
+        {% endif %}
+    </span>
+</div>
 
 {% endblock %}
