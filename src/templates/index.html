@@ -13,18 +13,18 @@
 {% endfor %}
 </ul>
 
-<div class="pagination" data-role="controlgroup" data-type="horizontal" style="margin-left:10px;">
+<div class="pagination">
     <span class="step-links">
         {% if posts.has_previous %}
-            <a href="?page={{ posts.previous_page_number }}" data-role="button">previous</a>
+            <a href="?page={{ posts.previous_page_number }}" data-role="button" data-inline="true"  data-icon="arrow-l">Prev</a>
         {% endif %}
 
-        <span class="current" style="margin-left:10px;">
-            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}
         </span>
 
         {% if posts.has_next %}
-            <a href="?page={{ posts.next_page_number }}" data-role="button">next</a>
+            <a href="?page={{ posts.next_page_number }}" data-role="button" data-inline="true" data-icon="arrow-r">Next</a>
         {% endif %}
     </span>
 </div>

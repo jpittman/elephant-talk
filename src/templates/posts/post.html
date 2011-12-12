@@ -45,7 +45,9 @@
     {{ form.object_pk }}
     {{ form.timestamp }}
     {{ form.security_hash }}
-    <input type="submit" name="submit" value="Post">
+    <div data-role="controlgroup" data-type="horizontal" style="margin-left:10px;">
+        <input type="submit" name="submit" value="Post" data-role="button">
+    </div>
 </form>
 
 {% endblock %}
