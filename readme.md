@@ -11,6 +11,6 @@ To set up the development environment, do the following:
 todo
 ====
 
- - add pagination
+ - add a profile pic for users
  - associate a user with a comment if the user is logged in.
  - add support for markdown syntax into blog posts
