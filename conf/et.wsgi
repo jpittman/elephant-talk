@@ -11,7 +11,7 @@ import os
 os.environ['PYTHON_EGG_CACHE'] = '/var/www/elephanttalk/egg-cache'
 
 #If your project is not on your PYTHONPATH by default you can add the following
-sys.path.append('/home/build/elephanttalk/et/staging')
+sys.path.append('/home/build/elephanttalk/src')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 
