@@ -26,7 +26,6 @@
 <h3>Leave A Comment:</h3>
 {% get_comment_form for post as form %}
 <form action="{% comment_form_target %}" method="post">
-    {% csrf_token %}
     <input type="hidden" name="next" value="{{ post.get_absolute_url }}" />
     {% csrf_token %}
     {{ form.name.errors }}
